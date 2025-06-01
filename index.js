@@ -30,6 +30,10 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/cafe-cred
   .catch(err => console.error('MongoDB connection error:', err));
 
 // Routes
+
+app.get("/",(req,res)=>{
+  res.send("Home Page")
+})
 app.use('/api/auth', authRoutes);
 app.use('/api/customers', customerRoutes);
 app.use('/api/menu', menuRoutes);
