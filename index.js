@@ -11,6 +11,7 @@ import menuRoutes from './routes/menu.js';
 import transactionRoutes from './routes/transactions.js';
 import dashboardRoutes from './routes/dashboard.js';
 import reportRoutes from './routes/reports.js';
+import User from './models/User.js';
 
 // Load environment variables
 dotenv.config();
@@ -31,8 +32,9 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/cafe-cred
 
 // Routes
 
-app.get("/",(req,res)=>{
-  res.send("Home Page")
+app.get("/",async (req,res)=>{
+ const users = User.find();
+ res.send(users);
 })
 app.use('/api/auth', authRoutes);
 app.use('/api/customers', customerRoutes);

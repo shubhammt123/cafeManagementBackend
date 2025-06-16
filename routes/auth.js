@@ -13,6 +13,7 @@ router.post('/register', async (req, res) => {
   try {
     const { username, password, role } = req.body;
     
+
     // Check if user already exists
     const existingUser = await User.findOne({ username });
     if (existingUser) {
@@ -83,7 +84,7 @@ router.post('/login', async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: error });
   }
 });
 
